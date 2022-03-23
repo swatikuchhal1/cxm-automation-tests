@@ -99,7 +99,7 @@ export class Rules extends BasePage {
         await page.waitForTimeout(10000)
 
         const [ruleName] = await page.$x("//input[@placeholder='Enter a name for this rule']")
-        await ruleName.type("auto-test-ss-slack")
+        await ruleName.type("auto-test-ss-slack1")
         await page.waitForTimeout(5000)
         const [createCondition] = await page.$x("//div[contains(text(),'Condition')]")
         await createCondition.click()
@@ -164,8 +164,8 @@ export class Rules extends BasePage {
         if (takeScreenshots == 'true') {
             await page.screenshot({ path: 'screenshots/6_CXMNewRuleSurvey.png', fullPage: true })
         }
-        const img5 = PNG.sync.read(fs.readFileSync('../screenshots/6_CXMNewRuleSurvey.png'))
-        const img6 = PNG.sync.read(fs.readFileSync('../masterscreenshots/6_Master_CXMNewRuleSurvey.png'))
+        const img5 = PNG.sync.read(fs.readFileSync('../cxm-automation-tests/screenshots/6_CXMNewRuleSurvey.png'))
+        const img6 = PNG.sync.read(fs.readFileSync('../cxm-automation-tests/masterscreenshots/6_Master_CXMNewRuleSurvey.png'))
         const diff2 = new PNG({ width: img5.width, height: img5.height })
         if (imageMatch == 'true') {
             pixelmatch(img5.data, img6.data, diff2.data, width, height, { threshold: 0.1 })
