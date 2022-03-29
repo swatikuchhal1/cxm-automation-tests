@@ -12,6 +12,7 @@ describe('CXM Regression Testing Suite', () => {
     let basePage
     let pod
     let api
+    let customdataName
    
 
     beforeAll(async () => {
@@ -23,43 +24,45 @@ describe('CXM Regression Testing Suite', () => {
         api = new apiCalls()
 
         pod = '2b4e915b-b9cd-44c1-a259-acd901165502'  //Swati Panel
+        customdataName = 'test_s1'
     })
 
-    it('Test 1 : Login to sit1', async () => {
+    it.skip('Test 1 : Login to sit1', async () => {
         await rules.login(username, password)
     })
 
-    it('Test 2 : Go To CXM Page', async () => {
+    it.skip('Test 2 : Go To CXM Page', async () => {
         await rules.gotoCXMPage()
         
     })
 
-    it('Test 3 : Create new rule', async () => {
+    it.skip('Test 3 : Create new rule with sparq survey', async () => {
         await rules.createNewRuleSS()
 
     })
-    it('Test 4 : Create new rule with touchpoint', async () => {
+    it.skip('Test 4 : Create new rule with touchpoint', async () => {
         await rules.createNewRuletp()
 
     })
-    it('Test 5 : Create and trigger new rule with custom data source', async () => {
+    it.skip('Test 5 : Create and trigger new rule with custom data source', async () => {
         await rules.createNewRuleCDS()
 
     })
     it('Test 6 : Enable rule with custom data source and EDS', async () => {
-        await rules.createNewRuleEds()
+       // await rules.createNewRuleEds()
+        await api.postCustomdata(pod, customdataName)
 
     })
-    it('Test 7 : Create new alida case', async () => {
+    it.skip('Test 7 : Create new alida case', async () => {
         await cases.newCases()
 
     })
-    it('Test 8 : Send Survey to trigger rule', async () => {
+    it.skip('Test 8 : Send Survey to trigger rule', async () => {
         await rules2.sendSurveys()
 
     })
     afterAll(async () => {
         await rules.close()
-        // await api.close()
+       //  await api.close()
     })
 })
