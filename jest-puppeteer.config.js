@@ -1,6 +1,6 @@
 module.exports = {
     launch: {
-        headless: false,
+        headless: true,
         args: ['--no-sandbox',
         '--disable-setuid-sandbox',
         // This will write shared memory files into /tmp instead of /dev/shm,
