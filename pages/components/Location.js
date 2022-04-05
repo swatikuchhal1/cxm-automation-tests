@@ -18,9 +18,16 @@ export class Location extends BasePage {
         newLoc.click() 
         await page.waitForTimeout(10000)
         const [subject] = await page.$x("//input[@placeholder='Location Quick Search']")
-        await subject.type("Starbucks Vancouver")
-        await page.waitForSelector('#Answer-option-0')
-        await page.waitForTimeout(10000)
+        await subject.type("Starbucks, Robson Street, Vancouver, BC, Canada")
+        
+        await page.keyboard.press('ArrowDown')
+        await page.keyboard.press('Enter')
+        
+        await page.waitForTimeout(20000)
+
+        const [saveloc] = await page.$x("//div[contains(text(),'Save')]")
+        saveloc.click()
+        await page.waitForTimeout(30000)
         /*await page.click('#Answer-option-0')
         const [savecase] = await page.$x("//span[contains(text(),'Save')]")
         savecase.click()
