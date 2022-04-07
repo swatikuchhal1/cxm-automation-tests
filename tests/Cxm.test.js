@@ -53,8 +53,8 @@ describe('CXM Regression Testing Suite', () => {
 
     })
     it('Test 6 : Enable rule with custom data source and EDS', async () => {
-       //await rules.createNewRuleEds()
-       //await api.postCustomdata()
+       await rules.createNewRuleEds()
+       await api.postCustomdata()
        await rules.deleteRule()
     })
     it.skip('Test 7 : Create new alida case', async () => {
