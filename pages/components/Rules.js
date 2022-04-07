@@ -97,7 +97,6 @@ export class Rules extends BasePage {
         const [newRule] = await page.$x("//div[contains(text(),'New Rule')]")
         await newRule.click()
         await page.waitForTimeout(10000)
-
         const [ruleName] = await page.$x("//input[@placeholder='Enter a name for this rule']")
         await ruleName.type("auto-test-ss-slack1")
         await page.waitForTimeout(5000)
@@ -115,9 +114,7 @@ export class Rules extends BasePage {
         await insert(page, '[id="Survey Name"]', "test-survey-rule1")
         await page.waitForTimeout(10000)
         await page.keyboard.press('ArrowDown')
-
         await page.keyboard.press('Enter')
-
         await page.waitForTimeout(5000)
         await page.click('[id="Question"]')
         await page.waitForTimeout(10000)
@@ -129,7 +126,6 @@ export class Rules extends BasePage {
         await page.waitForTimeout(10000)
         await page.waitForSelector('#Answer')
         await page.click('#Answer')
-
         await page.waitForSelector('#Answer-option-0')
         await page.click('#Answer-option-0')
         const [createAction] = await page.$x("//div[contains(text(),'Create An Action')]")
@@ -142,7 +138,6 @@ export class Rules extends BasePage {
         await createSlackMessage.click()
         await page.waitForTimeout(5000)
         await page.click('[id="Channel-input"]')
-      
         await page.waitForTimeout(5000)
         const [channelName] = await page.$x("//span[contains(text(),'@swati')]")
         channelName.click()
@@ -150,7 +145,7 @@ export class Rules extends BasePage {
         const [message] = await page.$x("(//div[@aria-label='rdw-wrapper'])")
         message.click()
         await page.waitForTimeout(5000)
-        await message.type("automation test")
+        await message.type("automation test ss and slack")
         await page.waitForTimeout(10000)
         const [saveDraft] = await page.$x("//span[contains(text(),'Save As Draft')]")
         saveDraft.click()
@@ -169,7 +164,7 @@ export class Rules extends BasePage {
         const diff2 = new PNG({ width: img5.width, height: img5.height })
         if (imageMatch == 'true') {
             pixelmatch(img5.data, img6.data, diff2.data, width, height, { threshold: 0.1 })
-            fs.writeFileSync('../screenshots/3_CXM_diff.png', PNG.sync.write(diff2))
+            fs.writeFileSync('../screenshots/6_CXM_SS_diff.png', PNG.sync.write(diff2))
         }
         
 
@@ -535,7 +530,7 @@ export class Rules extends BasePage {
         await sc2.click()
         await page.waitForTimeout(5000)
         const [ivar1] = await page.$x("(//div/input[@type='text'])[11]")
-       // await ivar.click()
+       
         await ivar1.type("a")
         await page.waitForTimeout(5000)       
         const [saveDraft] = await page.$x("//span[contains(text(),'Save As Draft')]")
@@ -547,9 +542,7 @@ export class Rules extends BasePage {
         const [enable] = await page.$x("//li[contains(text(),'Enable')]")
         enable.click()
         
-        await page.waitForTimeout(5000)
-
-
+        await page.waitForTimeout(10000)
         await page.screenshot({ path: 'screenshots/9_CXMNewRuleEDS.png', fullPage: true })
         if (takeScreenshots == 'true') {
             await page.screenshot({ path: 'screenshots/9_CXMNewRuleEDS.png', fullPage: true })
@@ -561,8 +554,26 @@ export class Rules extends BasePage {
             pixelmatch(img5.data, img6.data, diff2.data, width, height, { threshold: 0.1 })
             fs.writeFileSync('../screenshots/9_CXM_Eds_diff.png', PNG.sync.write(diff2))
         }
-
+        
     }
+
+async deleteRule() {
+    page.goto('https://app.sit1.vcilabs.com/cxm/rules')
+        await page.waitForTimeout(20000)
+         const [ruleA] = await page.$x("//tr//td//a//div[contains(text(),'auto-test-swati-customdata-eds')]")
+        await ruleA.click()
+        await page.waitForTimeout(10000)
+
+        const [del] = await page.$x("//span[@aria-label='delete']")
+        await del.click()
+
+        await page.waitForTimeout(10000)
+        const [confirmDeleteButton] = await page.$x("//span[contains(text(),'Delete')]")
+
+        await confirmDeleteButton.click()
+        await page.waitForTimeout(10000)
+}
+
     
 
     }
