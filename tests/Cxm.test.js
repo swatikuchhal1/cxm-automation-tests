@@ -1,10 +1,10 @@
 import { Rules } from '../pages/components/Rules'
 import { Survey } from '../pages/components/Survey'
 import { apiCalls } from '../pages/components/apiCalls'
-import { Location } from '../pages/components/Location'
+
 import { username, password, timeout, panel } from "../config"
 import { BasePage } from "../pages/BasePage"
-import { Cases } from '../pages/components/cases'
+
 
 describe('CXM Regression Testing Suite', () => {
     let rules
