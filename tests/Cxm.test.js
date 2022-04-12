@@ -6,23 +6,21 @@ import { BasePage } from "../pages/BasePage"
 
 describe('CXM Regression Testing Suite', () => {
     let rules
-    let rules2
-    let cases
+   
     let basePage
     let pod
     let api
     let customdataName
-    let location
+    
    
 
     beforeAll(async () => {
         jest.setTimeout(timeout)
         rules = new Rules()
-        rules2 = new Survey()
-        cases = new Cases()
+        
         basePage = new BasePage()
         api = new apiCalls()
-        location = new Location()
+      
 
         pod = '2b4e915b-b9cd-44c1-a259-acd901165502'  //Swati Panel
         customdataName = 'test_s1'
