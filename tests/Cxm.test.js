@@ -2,6 +2,7 @@ import { Rules } from '../pages/components/Rules'
 import { Survey } from '../pages/components/Survey'
 import { apiCalls } from '../pages/components/apiCalls'
 import { Location } from '../pages/components/Location'
+import { Journeys } from '../pages/components/journeys'
 import { username, password, timeout, panel } from "../config"
 import { BasePage } from "../pages/BasePage"
 import { Cases } from '../pages/components/cases'
@@ -15,6 +16,7 @@ describe('CXM Regression Testing Suite', () => {
     let api
     let customdataName
     let location
+    let journey
    
 
     beforeAll(async () => {
@@ -25,6 +27,9 @@ describe('CXM Regression Testing Suite', () => {
         basePage = new BasePage()
         api = new apiCalls()
         location = new Location()
+        
+        journey = new Journeys()
+
 
         pod = '2b4e915b-b9cd-44c1-a259-acd901165502'  //Swati Panel
         customdataName = 'test_s1'
@@ -48,13 +53,14 @@ describe('CXM Regression Testing Suite', () => {
 
     })
     it.skip('Test 5 : Create and trigger new rule with custom data source', async () => {
-       // await rules.createNewRuleCDS()
+        await rules.createNewRuleCDS()
         await api.postCustomdata()
 
     })
     it.skip('Test 6 : Enable rule with custom data source and EDS', async () => {
        await rules.createNewRuleEds()
        await api.postCustomdata()
+       await rules.deleteRule()
     })
     it.skip('Test 7 : Create new alida case', async () => {
         await cases.newCases()
@@ -65,8 +71,13 @@ describe('CXM Regression Testing Suite', () => {
 
     })
 
-    it('Test 9 : Create new location', async () => {
+    it.skip('Test 9 : Create new location', async () => {
         await location.newlocation()
+
+    })
+
+    it('Test 10 : Create new jouney', async () => {
+        await journey.newJourney()
 
     })
     afterAll(async () => {
